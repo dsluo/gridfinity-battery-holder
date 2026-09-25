@@ -1,0 +1,35 @@
+[project]
+name = "gridfinity-battery-holder"
+version = "0.1.0"
+description = "Parametric Gridfinity bins for storing batteries, built with build123d"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "dsluo", email = "me@dsluo.dev" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "build123d>=0.13.0",
+    "gridfinity",
+]
+
+[project.scripts]
+gridfinity-battery-holder = "gridfinity_battery_holder.__main__:main"
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+gridfinity = { git = "https://github.com/dsluo/gridfinity-build123d", branch = "build123d-0.13-compat" }
+
+[dependency-groups]
+dev = [
+    "ocp-vscode>=4.1.0",
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning:lib3mf.*"]
