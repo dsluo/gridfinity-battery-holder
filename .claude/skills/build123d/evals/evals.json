@@ -1,0 +1,26 @@
+{
+  "skill_name": "build123d",
+  "evals": [
+    {
+      "id": 1,
+      "name": "pipe-bracket",
+      "prompt": "can you model a wall bracket for a 25mm OD pipe in build123d? L-shaped: a 50x40mm wall plate, 4mm thick, with two countersunk holes for M4 screws (4.5mm clearance, 9mm head), and an arm sticking out 30mm from the wall that ends in a half-ring clamp around the pipe (pipe axis vertical, parallel to the wall), 4mm thick ring, 0.3mm clearance around the pipe. keep it parametric. export step and stl.",
+      "expected_output": "bracket.py with named parameters, bracket.step and bracket.stl; a single valid solid with through countersunk holes and a clamp sized to 25.6mm bore",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "arduino-enclosure",
+      "prompt": "I need a 3d printable project box for an Arduino Uno. board is 68.6 x 53.4mm, mounting holes at (14.0, 2.5), (15.3, 50.7), (66.1, 7.6), (66.1, 35.5) from the board's lower-left corner. 2mm walls and floor, 1mm gap around the board, 25mm internal height, 1.5mm fillet on the outside vertical edges, 5mm tall standoffs with 2.5mm pilot holes, and a separate flat lid with a lip that drops inside the walls (0.2mm clearance). use build123d, export both parts to one 3mf.",
+      "expected_output": "enclosure.py producing a box and lid as separate solids, exported to one .3mf via Mesher",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "fix-buggy-tray",
+      "prompt": "my build123d tray script (tray.py) runs without errors but the stl is wrong: it looks like a solid block, the corners aren't rounded, and I can't find the magnet holes. it's supposed to be an open-top tray sitting on z=0. can you fix it?",
+      "expected_output": "Fixed tray.py: hollow open-top tray on z=0, filleted corners, 6mm dia x 2mm deep magnet pockets in the underside, one solid",
+      "files": ["inputs/tray.py"]
+    }
+  ]
+}
