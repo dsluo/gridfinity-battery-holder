@@ -96,9 +96,11 @@ class BatteryHolder:
     def preview(self) -> bd.Compound:
         return bd.Compound([self.bin, *self.batteries()])
 
-    def cross_section(self) -> bd.Shape:
+    def cross_section(self) -> bd.Compound:
         """The preview cut in half across the battery axis."""
-        return bd.split(self.preview(), bisect_by=bd.Plane.YZ, keep=bd.Keep.BOTTOM)
+        return bd.split(
+            self.preview().solids(), bisect_by=bd.Plane.YZ, keep=bd.Keep.BOTTOM
+        )
 
     def __str__(self) -> str:
         return (
