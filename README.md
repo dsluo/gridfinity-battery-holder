@@ -52,7 +52,7 @@ Anything after the battery and count is passed to the command-line tool:
 |---|---|---|
 | `--style {auto,holder,tray}` | `auto` | `auto` makes a tray for button cells and a holder for everything else |
 | `--cell-size N` | `21` | `21` for half-size grid cells, `42` for full-size |
-| `--clearance MM` | `0.3` | gap on each side of every battery |
+| `--clearance MM` | `0.3` | gap on each side of every battery (around the rim, for trays) |
 | `--min-wall MM` | `3.0` holder, `2.0` tray | thinnest allowed outer wall; walls get thicker when there's spare room |
 
 Holders only:
@@ -72,6 +72,7 @@ Trays only:
 |---|---|---|
 | `--grid-x N` | picked | fix the tray's width in grid cells; it then only grows along Y |
 | `--no-stagger` | off | straight rows instead of bricklike |
+| `--thickness-clearance MM` | `0.15` | gap at each face of a cell, along its thickness |
 | `--seat F` | `0.5` | how much of each cell's diameter sits down in its slot; the rest sticks up above the bin |
 
 The tool can also be run directly, e.g.

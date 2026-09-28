@@ -38,8 +38,8 @@ class BatteryTray:
     grid_y: int
     cell_size: tuple[float, float]
     height: float
-    # Along X, the cell's thickness plus clearance, and across the slot in Y,
-    # its diameter plus clearance.
+    # Along X, the cell's thickness plus thickness_clearance, and across the
+    # slot in Y, its diameter plus clearance.
     slot_width: float
     slot_diameter: float
     divider: float
@@ -123,6 +123,7 @@ def make_tray(
     cell_size: tuple[float, float] = (21, 21),
     height_unit: float = 7,
     clearance: float = 0.3,
+    thickness_clearance: float = 0.15,
     divider: float = 1.2,
     seat: float = 0.5,
     stagger: bool = True,
@@ -134,7 +135,9 @@ def make_tray(
     grid_x: fixes the tray's width in cells, and it gets deeper along Y as
         needed. By default, the grid with the fewest cells, then the squarest.
     cell_size: (21, 21) for half-size cells, (42, 42) for full-size.
-    clearance: per side, around each cell.
+    clearance: per side, around each cell's rim.
+    thickness_clearance: at each face of a cell, along its thickness. Kept
+        tighter than `clearance` so cells don't lean over in their slots.
     divider: the wall between neighbouring slots and between rows.
     seat: how much of each cell's diameter sits down in its slot. The rest
         sticks up above the bin to grab. Under 0.5, the slots stop holding
@@ -153,7 +156,7 @@ def make_tray(
     if not 0 < seat < 1:
         raise ValueError(f"seat must be between 0 and 1, not {seat}")
 
-    slot_width = battery.length + 2 * clearance
+    slot_width = battery.length + 2 * thickness_clearance
     slot_diameter = battery.diameter + 2 * clearance
 
     pitch_x = slot_width + divider

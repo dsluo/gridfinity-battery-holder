@@ -47,6 +47,12 @@ def main(argv: list[str] | None = None) -> None:
         help="tray, how much of each cell's diameter sits down in its slot",
     )
     parser.add_argument(
+        "--thickness-clearance",
+        type=float,
+        default=0.15,
+        help="tray, at each face of a cell",
+    )
+    parser.add_argument(
         "--no-stagger",
         dest="stagger",
         action="store_false",
@@ -99,6 +105,7 @@ def main(argv: list[str] | None = None) -> None:
                 args.count,
                 grid_x=args.grid_x,
                 seat=args.seat,
+                thickness_clearance=args.thickness_clearance,
                 stagger=args.stagger,
                 **shared,
             )

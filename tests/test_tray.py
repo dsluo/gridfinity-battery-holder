@@ -169,3 +169,9 @@ def test_seat_sets_how_far_cells_stick_up():
 def test_rejects_bad_input(battery, count, kwargs, error):
     with pytest.raises(error):
         make_tray(battery, count, **kwargs)
+
+
+def test_thickness_has_its_own_clearance():
+    tray = make_tray(CR2032, 10, clearance=0.3, thickness_clearance=0.15)
+    assert tray.slot_width == pytest.approx(CR2032.length + 0.3)
+    assert tray.slot_diameter == pytest.approx(CR2032.diameter + 0.6)
